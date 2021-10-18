@@ -8,8 +8,6 @@ RUN apk add upx && \
 
 FROM alpine:latest
 COPY --from=builder /app /
-ENV TINI_VERSION v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT ["/tini", "--"]
+RUN apk add --no-cache tini
+ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/app"]
