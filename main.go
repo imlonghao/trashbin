@@ -16,6 +16,9 @@ import (
 
 //go:embed english.txt
 var english string
+
+//go:embed index.html
+var indexHtml string
 var wordlists []string
 var wordlistsCount int
 
@@ -36,7 +39,7 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "GET":
-			fmt.Fprintf(w, "trashbin\nUsage: curl --data-binary @<file> %s", baseUrl)
+			fmt.Fprintf(w, indexHtml, baseUrl)
 			return
 		case "POST":
 			key := randomKey(3, "-")
