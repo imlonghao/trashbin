@@ -39,8 +39,8 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "GET":
-			fmt.Fprintf(w, indexHtml, baseUrl)
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			fmt.Fprintf(w, indexHtml, baseUrl)
 			return
 		case "POST":
 			key := randomKey(3, "-")
